@@ -1,0 +1,48 @@
+<div>
+    <app-toolbar></app-toolbar>
+</div>
+<div>
+  <!--El formulario-->
+  <form (submit)="OnSumit()" #offersForm = 'ngForm'>
+    <!--Título (Obligatorio)-->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Ex. Discount in shoes on Adidas"
+      type = "text" [formControl]="titleFormControl"
+      name="title" required [(ngModel)]="offersData.title">
+      <mat-error *ngIf="titleFormControl.hasError('required')">
+        A title is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <!--Description-->  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Ex. You'll get a 10% discount in Adidas shoes on Surco" type = "text"
+      name="description" [(ngModel)]="offersData.description"></textarea>
+    </mat-form-field>
+    <!--Points-->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Points</mat-label>
+      <input matInput placeholder="Ex. 50s"
+      type = "number" [formControl]="pointsFormControl"
+      name="points" required [(ngModel)]="offersData.points">
+      <mat-error *ngIf="pointsFormControl.hasError('max') && !pointsFormControl.hasError('required')">
+        The quantity of points shouldn't be lower than 100
+      </mat-error>
+      <mat-error *ngIf="pointsFormControl.hasError('required') || pointsFormControl.hasError('min')">
+        The offer must require at least 1 point
+      </mat-error>
+    </mat-form-field>
+    <!--BusinessID-->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>BusinessID</mat-label>
+      <input matInput placeholder="Ex. abc123" type = "text"
+      name="businessId" [(ngModel)]="offersData.businessId">
+    </mat-form-field>
+    <!--Save-->
+    <button mat-button color="primary">Update</button> &nbsp;
+    <!--Cancel-->
+    <button mat-button color="primary" routerLink="/business/offers">Cancel</button> &nbsp;
+  </form>
+  <!--<app-offers></app-offers>-->
+</div>

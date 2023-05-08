@@ -1,1 +1,51 @@
-<p>offers works!</p>
+<div>
+    <app-toolbar></app-toolbar>
+</div>
+<div>
+  <!--Create new offer-->
+  <button mat-button color="primary" routerLink="/admin/offers/new">NEW</button> &nbsp;
+  <!--Tabla-->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+  <!-- Título Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title. </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description. </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+  <!-- Points Column -->
+  <ng-container matColumnDef="points">
+    <th mat-header-cell *matHeaderCellDef> Points. </th>
+    <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+  </ng-container>
+  <!-- BusinessID Column -->
+  <ng-container matColumnDef="businessId">
+    <th mat-header-cell *matHeaderCellDef> BusinessID. </th>
+    <td mat-cell *matCellDef="let element"> {{element.businessId}} </td>
+  </ng-container>
+  <!-- Options Column -->
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef> Options. </th>
+    <td mat-cell *matCellDef="let element">
+      <!--Edit button-->
+      <button mat-raised-button color="accent">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <!--Delete button-->
+      <button mat-raised-button color="accent">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>  
+</div>
